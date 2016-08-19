@@ -1,0 +1,120 @@
+{
+  "open_cases": 3440,
+  "closed_cases": 1907,
+	"building": {
+    "name": "Building",
+    "closed": 723,
+    "mean_closed": 263.995850622407,
+    "open": 1588,
+    "mean_open": 588.887279596977
+	},
+  "code_compliance": {
+    "name": "Code Compliance",
+    "closed": 209,
+    "mean_closed": 125.684210526316,
+    "open": 73,
+    "mean_open": 236.958904109589
+  },
+  "graffiti": {
+    "name": "Grafitti",
+    "closed": 1,
+    "mean_closed": 1605,
+    "open": 1,
+    "mean_open": 667
+  },
+  "zoning": {
+    "name": "Zoning",
+    "closed": 974,
+    "mean_closed": 215.571868583162,
+    "open": 1778,
+    "mean_open": 566.493813273341
+  },
+  "administrative": {
+    "name": "Administrative",
+    "closed": 145,
+    "mean": 324.627586206897
+  },
+  "compliance": {
+    "name": "Compliance",
+    "closed": 1045,
+    "mean": 279.647846889952
+  },
+  "no_violation": {
+    "name": "No Violation",
+    "closed": 469,
+    "mean": 90.6098081023454
+  },
+  "referred_cao": {
+    "name": "Referred CAO",
+    "closed": 5,
+    "mean": 476.4
+  },
+  "no_reason": {
+    "name": "No Reason specified",
+    "closed": 243,
+    "mean": 183.242798353909
+  },
+  "citizen": {
+    "case_source": "Citizen Complaint",
+    "closed": 1558,
+    "mean_closed": 169.909499358151,
+    "open": 2492,
+    "mean_open": 434.916532905297
+  },
+  "council": {
+    "case_source": "Council Referral",
+    "closed": 46,
+    "mean_closed": 179.347826086957,
+    "open": 98,
+    "mean_open": 431.010204081633
+  },
+  "grafitti_hotline": {
+    "case_source": "Grafitti Hotline",
+    "closed": 1,
+    "mean_closed": 83,
+    "open": 2,
+    "mean_open": 1214.5
+  },
+  "nccd_staff": {
+    "case_source": "NCCD Staff",
+    "closed": 187,
+    "mean_closed": 612.577540106952,
+    "open": 511,
+    "mean_open": 1071.11154598826
+  },
+  "organization": {
+    "case_source": "Organization Complaint",
+    "closed": 13,
+    "mean_closed": 310.615384615385,
+    "open": 25,
+    "mean_open": 722.64
+  },
+  "other_department": {
+    "case_source": "Other City Department",
+    "closed": 61,
+    "mean_closed": 429.360655737705,
+    "open": 198,
+    "mean_open": 931.373737373737
+  },
+  "outside_agency": {
+    "case_source": "Outside Agency",
+    "closed": 2,
+    "mean_closed": 329,
+    "open": 9,
+    "mean_open": 1234.88888888889
+  },
+  "police_department": {
+    "case_source": "Police Department Referral",
+    "closed": 35,
+    "mean_closed": 232.742857142857,
+    "open": 79,
+    "mean_open": 615.227848101266
+  },
+  "route_slip": {
+    "case_source": "Route Slip Complaint",
+    "closed": 3,
+    "mean_closed": 155.666666666667,
+    "open": 20,
+    "mean_open": 890.65
+  }
+}

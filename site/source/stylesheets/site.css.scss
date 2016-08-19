@@ -1,0 +1,32 @@
+@charset "utf-8";
+@import "normalize";
+@import "bourbon/bourbon";
+@import "base/grid-settings";
+@import "neat/neat";
+@import "base/base";
+
+body {
+  background: #cecece;
+  font-size: 1em;
+}
+h1, h2 {
+  text-align: center;
+}
+.content {
+  background: #fff;
+  @include outer-container();
+  padding: 1em
+}
+.group {
+  @include span-columns(6);
+  span {
+    text-decoration: underline;
+  }
+}
+.group-graph {
+  @include span-columns(6);
+  @include omega();
+}
+.category {
+  @include row();
+}
