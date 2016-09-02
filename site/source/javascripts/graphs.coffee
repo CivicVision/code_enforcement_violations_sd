@@ -49,7 +49,222 @@ backlogPerWorkgroup = {
 		"color": {"field": "case_type", "type": "nominal"}
 	}
 }
-embedSpec = 
+backlogSlope = {
+  "width": 1,
+  "height": 1,
+  "padding": "auto",
+  "data": [
+    {
+      "name": "source",
+      "url": "data/code_violations_year_month_workgroup_backlog_tidy.csv",
+      "format": {"type": "csv","parse": {"cases": "number", "year_month": "date:'%Y-%m'"}},
+      "transform": [
+        {"type": "formula", "field": "date", "expr": "year(datum.year_month)+\"-\"+(month(datum.year_month)+1)"},
+        {
+          "type": "filter",
+          "test": "datum[\"cases\"] !== null && !isNaN(datum[\"cases\"])"
+        },
+        {
+          "type": "filter",
+          "test": "(datum.date == \"2016-1\" || datum.date == \"2016-6\") && datum.case_type == \"backlog\""
+        }
+      ]
+    },
+    {
+      "name": "layout",
+      "source": "source",
+      "transform": [
+        {
+          "type": "aggregate",
+          "summarize": [{"field": "year_month","ops": ["distinct"]}]
+        },
+        {
+          "type": "formula",
+          "field": "width",
+          "expr": "(datum[\"distinct_year_month\"] + 1) * 50"
+        },
+        {"type": "formula","field": "height","expr": "200"}
+      ]
+    }
+  ],
+  "marks": [
+    {
+      "name": "root",
+      "type": "group",
+      "description": "A simple bar chart with embedded data.",
+      "from": {"data": "layout"},
+      "properties": {
+        "update": {
+          "width": {"field": "width"},
+          "height": {"field": "height"}
+        }
+      },
+      "marks": [
+        {
+          "name": "pathgroup",
+          "type": "group",
+          "from": {
+            "data": "source",
+            "transform": [{"type": "facet","groupby": ["workgroup"]}]
+          },
+          "properties": {
+            "update": {
+              "width": {"field": {"group": "width"}},
+              "height": {"field": {"group": "height"}}
+            }
+          },
+          "marks": [
+            {
+              "name": "marks",
+              "type": "line",
+              "from": {
+                "transform": [{"type": "sort","by": "-year_month"}]
+              },
+              "properties": {
+                "update": {
+                  "x": {"scale": "x","field": "year_month"},
+                  "y": {"scale": "y","field": "cases"},
+                  "strokeWidth": {"value": 2},
+                  "stroke": {"scale": "color","field": "workgroup"}
+                }
+              }
+            },
+            {
+              "name": "marks",
+              "type": "symbol",
+              "from": {
+                "transform": [{"type": "sort","by": "-year_month"}]
+              },
+              "properties": {
+                "update": {
+                  "x": {"scale": "x","field": "year_month"},
+                  "y": {"scale": "y","field": "cases"},
+                  "fill": {"scale": "color", "field": "workgroup"},
+                  "size": {"value": 36}
+                }
+              }
+            },
+            {
+              "type": "text",
+              "from": {
+                "transform": [{"type": "filter", "test": "datum.date == \"2016-1\""}]
+              },
+              "properties": {
+                "update": {
+                  "x": {"scale": "x", "field": "year_month", "offset": -25},
+                  "y": {"scale": "y", "field": "cases"},
+                  "fill": {"scale": "color", "field": "workgroup"},
+                  "text": {"field": "cases"},
+                  "baseline": {"value": "middle"}
+                }
+              }
+            },
+            {
+              "type": "text",
+              "from": {
+                "transform": [{"type": "filter", "test": "datum.date == \"2016-6\""}]
+              },
+              "properties": {
+                "update": {
+                  "x": {"scale": "x", "field": "year_month", "offset": 35},
+                  "y": {"scale": "y", "field": "cases"},
+                  "fill": {"scale": "color", "field": "workgroup"},
+                  "text": {"field": "workgroup"},
+                  "baseline": {"value": "middle"}
+                }
+              }
+            },
+            {
+              "type": "text",
+              "from": {
+                "transform": [{"type": "filter", "test": "datum.date == \"2016-6\""}]
+              },
+              "properties": {
+                "update": {
+                  "x": {"scale": "x", "field": "year_month", "offset": 35},
+                  "y": {"scale": "y", "field": "cases"},
+                  "fill": {"scale": "color", "field": "workgroup"},
+                  "text": {"field": "workgroup"},
+                  "baseline": {"value": "middle"}
+                }
+              }
+            },
+            {
+              "type": "text",
+              "from": {
+                "transform": [{"type": "filter", "test": "datum.date == \"2016-6\""}]
+              },
+              "properties": {
+                "update": {
+                  "x": {"scale": "x", "field": "year_month", "offset": 5},
+                  "y": {"scale": "y", "field": "cases"},
+                  "fill": {"scale": "color", "field": "workgroup"},
+                  "text": {"field": "cases"},
+                  "baseline": {"value": "middle"}
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "scales": [
+        {
+          "name": "x",
+          "type": "ordinal",
+          "domain": {
+            "data": "source",
+            "field": "year_month",
+            "sort": true
+          },
+          "bandSize": 50,
+          "round": true,
+          "points": true,
+          "padding": 1
+        },
+        {
+          "name": "y",
+          "type": "linear",
+          "domain": {"data": "source","field": "cases"},
+          "rangeMin": 200,
+          "rangeMax": 0,
+          "round": true,
+          "nice": true,
+          "zero": true
+        },
+        {
+          "name": "color",
+          "type": "ordinal",
+          "domain": {
+            "data": "source",
+            "field": "workgroup",
+            "sort": true
+          },
+          "range": "category10"
+        }
+      ],
+      "axes": [
+        {
+          "type": "x",
+          "scale": "x",
+          "grid": false,
+          "ticks": 2,
+          "title": "Date",
+          "properties": {
+            "labels": {
+              "text": {
+                "template": "{{ datum[\"data\"] | time: '%b %Y'}}"
+              },
+              "angle": {"value": 0}
+            }
+          }
+        },
+      ],
+      "legends": [
+      ]
+    }
+  ]
+}
+embedSpec =
   mode: 'vega-lite'
   spec: workgroup
   actions: false
@@ -86,6 +301,14 @@ backlogWorkgroupSpec=
   spec: backlogPerWorkgroup
   actions: false
 vg.embed '#backlog-per-workgroup', backlogWorkgroupSpec, (error, result) ->
+  # Callback receiving the View instance and parsed Vega spec
+  # result.view is the View, which resides under the '#vis' element
+  return
+backlogSlopeSpec = 
+  mode: 'vega-lite'
+  spec: backlogSlope
+  actions: false
+vg.embed '#backlog-slope', backlogSlopeSpec, (error, result) ->
   # Callback receiving the View instance and parsed Vega spec
   # result.view is the View, which resides under the '#vis' element
   return
