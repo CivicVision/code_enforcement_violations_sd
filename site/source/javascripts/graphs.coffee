@@ -10,44 +10,44 @@ caseSource = {
   }
 }
 closingReasons = {
-	"description": "A simple bar chart with embedded data.",
-	"data": { "url": "data/closed_by_reason.csv" },
-	"mark":"bar",
-	"encoding": {
-		"y": {"field": "close_reason", "type": "ordinal", "sort": {"op": "sum", "field": "count"}, "axis": {"title": "Close Reason"}},
-		"x": {"field": "count", "type": "quantitative", "axis": {"title": "# Cases"}},
-		"order": {"field": "open", "type": "ordinal", "sort": "descending"}
-	}
+  "description": "A simple bar chart with embedded data.",
+  "data": { "url": "data/closed_by_reason.csv" },
+  "mark":"bar",
+  "encoding": {
+    "y": {"field": "close_reason", "type": "ordinal", "sort": {"op": "sum", "field": "count"}, "axis": {"title": "Close Reason"}},
+    "x": {"field": "count", "type": "quantitative", "axis": {"title": "# Cases"}},
+    "order": {"field": "open", "type": "ordinal", "sort": "descending"}
+  }
 }
 workgroup= {
-	"description": "A simple bar chart with embedded data.",
-	"data": { "url": "data/case_by_workgroup.csv" },
-	"mark":"bar",
-	"encoding": {
+  "description": "A simple bar chart with embedded data.",
+  "data": { "url": "data/case_by_workgroup.csv" },
+  "mark":"bar",
+  "encoding": {
 		"y": {"field": "workgroup", "type": "ordinal", "sort": {"op": "sum", "field": "open"}, "axis": {"title": "Workgroup"}},
 		"x": {"field": "open", "type": "quantitative", "axis": {"title": "# Cases"}}
-	}
+  }
 }
 cases_closed_per_month = {
-	description: "A simple bar chart with embedded data.",
-	data: { "url": "data/code_violations_year_month_backlog_tidy.csv" },
-	mark:"line",
-	encoding: {
-    x: {"field": "year_month", "type": "ordinal", "scale": {"bandSize": 50, "padding": 0.5} },
-		y: { "aggregate": "median", "field": "cases", "type": "quantitative", "axis": {"title": "# Cases"}}
-		"color": {"field": "case_type", "type": "nominal"}
-	}
+  "description": "A simple bar chart with embedded data.",
+  "data": { "url": "data/code_violations_year_month_backlog_tidy.csv" },
+  "mark":"line",
+  "encoding": {
+    "x": {"field": "year_month", "type": "ordinal", "scale": {"bandSize": 50, "padding": 0.5} },
+    "y": { "aggregate": "median", "field": "cases", "type": "quantitative", "axis": {"title": "# Cases"}}
+    "color": {"field": "case_type", "type": "nominal"}
+  }
 }
 backlogPerWorkgroup = {
-	description: "A simple bar chart with embedded data.",
-	data: { "url": "data/code_violations_year_month_workgroup_backlog_tidy.csv" },
-	mark:"line",
-	encoding: {
+  "description": "A simple bar chart with embedded data.",
+  "data": { "url": "data/code_violations_year_month_workgroup_backlog_tidy.csv" },
+  "mark":"line",
+  "encoding": {
     "column": {"field": "workgroup", "type": "nominal"},
-    x: {"field": "year_month", "type": "ordinal"},
-		y: { "field": "cases", "type": "quantitative", "axis": {"title": "# Cases"}}
-		"color": {"field": "case_type", "type": "nominal"}
-	}
+    "x": {"field": "year_month", "type": "ordinal"},
+    "y": { "field": "cases", "type": "quantitative", "axis": {"title": "# Cases"}}
+    "color": {"field": "case_type", "type": "nominal"}
+  }
 }
 embedSpec = 
   mode: 'vega-lite'
