@@ -23,42 +23,15 @@ title: Welcome to Middleman
       are Grafitti cases.
   .group-graph#working-group
 .category
-  %h2 Closing Reasons
-  .group
-    %p
-      Of the 
-      %span.closed= data.cases.closed_cases
-      closed cases
-      %span.closed.compliance= data.cases.compliance.closed
-      were closed after compliance, on
-      %span.closed.no-violation= data.cases.no_violation.closed
-      no violation could be found, 
-      %span.closed.no-reason= data.cases.no_reason.closed
-      were closed without specifiying a reason,
-      %span.closed.administrative= data.cases.administrative.closed
-      were closed for Administrative reason and
-      %span.closed.referred-cao= data.cases.referred_cao.closed
-      were referenced as Referred CAO.
-  .group-graph#closing-reasons
-.category
-  %h2 Sources
-  .group
-    %p
-      The most cases were brought by the public.
-      %span.source.citizen= data.cases.citizen.closed+data.cases.citizen.open
-      were submitted by citizens,
-      %span.source.nccd= data.cases.nccd_staff.closed+data.cases.nccd_staff.open
-      by the NCCD Staff and
-      %span.source.nccd= data.cases.other_department.closed+data.cases.other_department.open
-      by Other Departments.
-  .group-graph#case-sources
-
-.category
-  %h2 Sources
-  .group-graph#case-per-month
-.category
-  %h2 Sources
-  .group-graph#backlog-per-workgroup
-.category
-  %h2 Sources
+  %h2 Case Backlog 2016
   .group-graph#backlog-slope
+.category
+  %h2 Detailed Case Backlog per month in 2016
+  .full-graph#case-per-month
+.category
+  %h2 Open Cases by Investigator
+  .full-graph#backlog-investigator
+.category
+  %h2 Last Action for Open Cases
+  %p Last Action for open cases with at least 100 Open cases.
+  .full-graph#last-action
