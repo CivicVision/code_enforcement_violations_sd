@@ -13,6 +13,7 @@ module.exports = {
   module: {
     loaders: [
       { test: /\**\/*coffee$/, loader: "coffee-loader", exclude: /node_modules|\.tmp/},
+      { test: /\.json$/, loader: 'json-loader' },
       { test: /\.css$/, loader: "style-loader!css-loader" },
     ],
     noParse: [
