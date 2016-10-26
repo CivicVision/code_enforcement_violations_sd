@@ -89,7 +89,7 @@ openCasesLastActionBar= {
   },
   "mark":"bar",
   "encoding": {
-    "x": {"field": "count", "type": "quantitative", "axis": {"title": "Cases"}},
+    "x": {"field": "count", "type": "quantitative", "axis": {"title": "Cases"}, "scale": { "bandSize": "fit"}},
     "y": {"field": "last_action", "type": "nominal", "axis": {"title": "Last Action", "labelMaxLength": 200}, "sort": { "op": "sum", "field": "count", "order": "descending"}}
   }
 }
@@ -210,11 +210,11 @@ backlogSlope = {
             {
               "type": "text",
               "from": {
-                "transform": [{"type": "filter", "test": "datum.date == \"2016-1\""}]
+                "transform": [{"type": "filter", "test": "datum.date == \"2016-1\" && datum.case_type == \"backlog\""}]
               },
               "properties": {
                 "update": {
-                  "x": {"scale": "x", "field": "year_month", "offset": -25},
+                  "x": {"scale": "x", "field": "year_month", "offset": -30},
                   "y": {"scale": "y", "field": "cases"},
                   "fill": {"scale": "color", "field": "case_type"},
                   "text": {"field": "cases"},
@@ -225,7 +225,67 @@ backlogSlope = {
             {
               "type": "text",
               "from": {
-                "transform": [{"type": "filter", "test": "datum.date == \"2016-6\""}]
+                "transform": [{"type": "filter", "test": "datum.date == \"2016-1\" && datum.case_type == \"closed\""}]
+              },
+              "properties": {
+                "update": {
+                  "x": {"scale": "x", "field": "year_month", "offset": -25},
+                  "y": {"scale": "y", "field": "cases", "offset": 5},
+                  "fill": {"scale": "color", "field": "case_type"},
+                  "text": {"field": "cases"},
+                  "baseline": {"value": "middle"}
+                }
+              }
+						},
+            {
+              "type": "text",
+              "from": {
+                "transform": [{"type": "filter", "test": "datum.date == \"2016-1\" && datum.case_type == \"open\""}]
+              },
+              "properties": {
+                "update": {
+                  "x": {"scale": "x", "field": "year_month", "offset": -25},
+                  "y": {"scale": "y", "field": "cases", "offset": -5},
+                  "fill": {"scale": "color", "field": "case_type"},
+                  "text": {"field": "cases"},
+                  "baseline": {"value": "middle"}
+                }
+              }
+            },
+            {
+              "type": "text",
+              "from": {
+                "transform": [{"type": "filter", "test": "datum.date == \"2016-6\" && datum.case_type == \"open\""}]
+              },
+              "properties": {
+                "update": {
+                  "x": {"scale": "x", "field": "year_month", "offset": 35},
+                  "y": {"scale": "y", "field": "cases", "offset": -5},
+                  "fill": {"scale": "color", "field": "case_type"},
+                  "text": {"field": "case_type"},
+                  "baseline": {"value": "middle"}
+                }
+              }
+            },
+            {
+              "type": "text",
+              "from": {
+                "transform": [{"type": "filter", "test": "datum.date == \"2016-6\" && datum.case_type == \"closed\""}]
+              },
+              "properties": {
+                "update": {
+                  "x": {"scale": "x", "field": "year_month", "offset": 35},
+                  "y": {"scale": "y", "field": "cases", "offset": 5},
+                  "fill": {"scale": "color", "field": "case_type"},
+                  "text": {"field": "case_type"},
+                  "baseline": {"value": "middle"}
+                }
+              }
+            },
+            {
+              "type": "text",
+              "from": {
+                "transform": [{"type": "filter", "test": "datum.date == \"2016-6\" && datum.case_type == \"backlog\""}]
               },
               "properties": {
                 "update": {
@@ -240,14 +300,14 @@ backlogSlope = {
             {
               "type": "text",
               "from": {
-                "transform": [{"type": "filter", "test": "datum.date == \"2016-6\""}]
+                "transform": [{"type": "filter", "test": "datum.date == \"2016-6\" && datum.case_type == \"open\""}]
               },
               "properties": {
                 "update": {
-                  "x": {"scale": "x", "field": "year_month", "offset": 35},
-                  "y": {"scale": "y", "field": "cases"},
+                  "x": {"scale": "x", "field": "year_month", "offset": 5},
+                  "y": {"scale": "y", "field": "cases", "offset": -5},
                   "fill": {"scale": "color", "field": "case_type"},
-                  "text": {"field": "case_type"},
+                  "text": {"field": "cases"},
                   "baseline": {"value": "middle"}
                 }
               }
@@ -255,7 +315,22 @@ backlogSlope = {
             {
               "type": "text",
               "from": {
-                "transform": [{"type": "filter", "test": "datum.date == \"2016-6\""}]
+                "transform": [{"type": "filter", "test": "datum.date == \"2016-6\" && datum.case_type == \"closed\""}]
+              },
+              "properties": {
+                "update": {
+                  "x": {"scale": "x", "field": "year_month", "offset": 5},
+                  "y": {"scale": "y", "field": "cases", "offset": 5},
+                  "fill": {"scale": "color", "field": "case_type"},
+                  "text": {"field": "cases"},
+                  "baseline": {"value": "middle"}
+                }
+              }
+            },
+            {
+              "type": "text",
+              "from": {
+                "transform": [{"type": "filter", "test": "datum.date == \"2016-6\" && datum.case_type == \"backlog\""}]
               },
               "properties": {
                 "update": {
@@ -336,8 +411,8 @@ casesPerMonth2016 = {
   "data": [
     {
       "name": "source",
-      "url": "https://gist.githubusercontent.com/milafrerichs/73261870593a9a0510b4967241673864/raw/d87a90918a7008851189c898132ffa2a1e1c0a51/code_violations_year_month_backlog_tidy.csv",
-      "format": {"type": "csv","parse": {"cases": "number"}},
+      "url": "data/code_violations_year_month_backlog_tidy.csv",
+      "format": {"type": "csv","parse": {"cases": "number", "YEAR_CLOSED": "number"}},
       "transform": [
         {
           "type": "filter",
@@ -345,7 +420,7 @@ casesPerMonth2016 = {
         },
         {
           "type": "filter",
-          "test": "(datum.year_month !== \"2015-12\")"
+          "test": "(datum.YEAR_CLOSED > 2015)"
       }
       ]
     },
@@ -500,51 +575,33 @@ casesPerMonth2016 = {
   ]
 }
 window.onload = () ->
-
 	contentDiv = document.getElementsByClassName('content')[0]
-	width = contentDiv.offsetWidth
-	openCasesByInvestigatorBar.width = width
-	openCasesLastActionBar.width = width
+	width = contentDiv.offsetWidth - 100
 	embedSpec =
 		mode: 'vega-lite'
 		spec: workgroup
 		actions: false
-	vg.embed '#working-group', embedSpec, (error, result) ->
-		# Callback receiving the View instance and parsed Vega spec
-		# result.view is the View, which resides under the '#vis' element
-		return
+	vg.embed '#working-group', embedSpec
 	closingSpec =
 		mode: 'vega-lite'
 		spec: closingReasons
 		actions: false
-	vg.embed '#closing-reasons', closingSpec, (error, result) ->
-		# Callback receiving the View instance and parsed Vega spec
-		# result.view is the View, which resides under the '#vis' element
-		return
+	vg.embed '#closing-reasons', closingSpec
 	sourceSpec =
 		mode: 'vega-lite'
 		spec: caseSource
 		actions: false
-	vg.embed '#case-sources', sourceSpec, (error, result) ->
-		# Callback receiving the View instance and parsed Vega spec
-		# result.view is the View, which resides under the '#vis' element
-		return
+	vg.embed '#case-sources', sourceSpec
 	per_month_Spec =
 		mode: 'vega'
 		spec: casesPerMonth2016
 		actions: false
-	vg.embed '#case-per-month', per_month_Spec, (error, result) ->
-		# Callback receiving the View instance and parsed Vega spec
-		# result.view is the View, which resides under the '#vis' element
-		return
+	vg.embed '#case-per-month', per_month_Spec
 	backlogWorkgroupSpec=
 		mode: 'vega-lite'
 		spec: backlogPerWorkgroup
 		actions: false
-	vg.embed '#backlog-per-workgroup', backlogWorkgroupSpec, (error, result) ->
-		# Callback receiving the View instance and parsed Vega spec
-		# result.view is the View, which resides under the '#vis' element
-		return
+	vg.embed '#backlog-per-workgroup', backlogWorkgroupSpec
 	openCasesSpec =
 		mode: 'vega-lite'
 		spec: openCasesByInvestigatorBar
@@ -561,7 +618,4 @@ window.onload = () ->
 		mode: 'vega'
 		spec: backlogSlope
 		actions: false
-	vg.embed '#backlog-slope', backlogSlopeSpec, (error, result) ->
-		# Callback receiving the View instance and parsed Vega spec
-		# result.view is the View, which resides under the '#vis' element
-		return
+	vg.embed '#backlog-slope', backlogSlopeSpec
