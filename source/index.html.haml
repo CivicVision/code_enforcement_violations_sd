@@ -1,0 +1,77 @@
+---
+title: Code Enforcement Violations San Diego
+---
+.relative.pt-16.sm:pt-24.lg:pt-32
+  .mx-auto.max-w-md.px-4.sm:px-6.sm:max-w-3xl.lg:px-8.lg:max-w-7xl
+    %div
+      %h2.mt-2.text-3xl.font-extrabold.text-gray-900.tracking-tight.sm:text-5xl
+        Code Enforcement Violations San Diego
+      %p.mt-5.max-w-prose.text-xl.text-gray-500
+        This site is the result of an analysis of data from 2016 of Code Enforcement violations in the City of San Diego. It showcases the huge backlog of cases that was dicussed heavily in the press at the time.  
+
+%dl.mt-10.text-center.sm:max-w-5xl.sm:mx-auto.sm:grid.sm:grid-cols-5.sm:gap-8
+  .flex.flex-col
+    = partial "partials/stat", locals: { title: "Open Cases", data: data.cases.open_cases }
+  .flex.flex-col.mt-10.sm:mt-0
+    = partial "partials/stat", locals: { title: "Building violations", data: data.cases.building.open }
+  .flex.flex-col.mt-10.sm:mt-0
+    = partial "partials/stat", locals: { title: "Zoning violations", data: data.cases.zoning.open }
+  .flex.flex-col.mt-10.sm:mt-0
+    = partial "partials/stat", locals: { title: "Code Compliance violations", data: data.cases.code_compliance.open }
+  .flex.flex-col.mt-10.sm:mt-0
+    = partial "partials/stat", locals: { title: "Grafitti violations", data: data.cases.graffiti.open }
+
+.max-w-md.px-4.text-center.sm:px-6.sm:max-w-3xl.lg:px-8.lg:max-w-3xl
+  .group-graph#working-group
+.lg:relative.mt-16
+  .mx-auto.max-w-7xl.w-full.pb-20.text-center.lg:text-left.flex
+    .px-4.sm:px-8.xl:pr-16.w-full(class="lg:w-2/5")
+      %h2.text-2xl.tracking-tight.font-extrabold.text-gray-900.sm:text-3xl.md:text-4xl.lg:text-3xl.xl:text-4xl
+        %span.block.xl:inline Cases Backlog 2016
+      %p.mt-3.max-w-md.mx-auto.text-lg.text-gray-500.sm:text-xl.md:mt-5.md:max-w-3xl
+        The backlock of cases still grew over the course of 2016. 
+        %br
+        Since the gap between closed cases and newly open cases was never closed, the backlog grew in the first half of 2016.
+      .mt-10.sm:flex.sm:justify-center.lg:justify-start
+    .relative.w-full{:class => "lg:w-3/5"}
+      .group-graph#backlog-slope
+      .full-graph#case-per-month
+.lg:relative.mt-16
+  .mx-auto.max-w-7xl.w-full.pb-20.text-center.lg:text-left.flex
+    .px-4.sm:px-8.xl:pr-16.w-full(class="lg:w-2/5")
+      %h2.text-2xl.tracking-tight.font-extrabold.text-gray-900.sm:text-3xl.md:text-4xl.lg:text-3xl.xl:text-4xl
+        %span.block.xl:inline Cases by Investigator
+      %p.mt-3.max-w-md.mx-auto.text-lg.text-gray-500.sm:text-xl.md:mt-5.md:max-w-3xl
+        Even though we don't know anything about the staff responsible for the cases we do know their names.
+        %br
+        And it seems as if Joyce Parani had the highest workload and backlog of issues.  Again, we don't know why that is the case but it is an interesting observation and more research would be needed to make any assumptions.
+      .mt-10.sm:flex.sm:justify-center.lg:justify-start
+    .relative.w-full{:class => "lg:w-3/5"}
+      .full-graph#backlog-investigator
+
+.lg:relative.mt-16
+  .mx-auto.max-w-7xl.w-full.pb-20.text-center.lg:text-left.flex
+    .px-4.sm:px-8.xl:pr-16.w-full(class="lg:w-2/5")
+      %h2.text-2xl.tracking-tight.font-extrabold.text-gray-900.sm:text-3xl.md:text-4xl.lg:text-3xl.xl:text-4xl
+        %span.block.xl:inline Last Action for Open Cases
+      %p.mt-3.max-w-md.mx-auto.text-lg.text-gray-500.sm:text-xl.md:mt-5.md:max-w-3xl
+        Looking at the last action type which have a least 100 open cases.
+        %br
+        Most of the cases that are open are still in the prepping for inspeaction phase or are in inspection.  
+      .mt-10.sm:flex.sm:justify-center.lg:justify-start
+    .relative.w-full{:class => "lg:w-3/5"}
+      .full-graph#last-action
+
+.lg:relative.mt-16
+  .mx-auto.max-w-7xl.w-full.pb-20.text-center.lg:text-left.flex
+    .px-4.sm:px-8.xl:pr-16.w-full
+      %h2.text-2xl.tracking-tight.font-extrabold.text-gray-900.sm:text-3xl.md:text-4xl.lg:text-3xl.xl:text-4xl
+        %span.block.xl:inline Data & People involved
+      %p.mt-3.max-w-md.text-lg.text-gray-500.sm:text-xl.md:mt-5.md:max-w-3xl
+        The data for this analysis is available at the 
+        %a.text-blue-500.hover:underline(href="https://data.sandiego.gov/datasets/code-enforcement-violations/")Open Data Portal
+        of the City of San Diego. Only data from 2016 was looked at the time of this analysis.
+        %br
+        The analysis was done by
+        %a.text-blue-500.hover:underline(href="https://milafrerichs.com/en") Mila Frerichs
+        , a civic hacker interested in San Diego politics.
