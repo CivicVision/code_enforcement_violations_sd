@@ -2,4 +2,4 @@
 vg = require('vega');
 require('vega-lite');
 vg.embed = require('vega-embed');
-require('./graphs.coffee');
+require('coffee-loader!./graphs.coffee');

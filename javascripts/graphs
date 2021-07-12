@@ -35,6 +35,7 @@
       "url": "data/closed_by_reason.csv"
     },
     "mark": "bar",
+    "width": "container",
     "encoding": {
       "y": {
         "field": "close_reason",
@@ -68,13 +69,15 @@
       "url": "data/case_by_workgroup.csv"
     },
     "mark": "bar",
+    "width": "container",
     "encoding": {
       "y": {
         "field": "workgroup",
         "type": "ordinal",
         "sort": {
           "op": "sum",
-          "field": "open"
+          "field": "open",
+          "order": "descending"
         },
         "axis": {
           "title": "Workgroup"
@@ -104,6 +107,7 @@
         }
       ]
     },
+    "width": "container",
     "mark": "line",
     "encoding": {
       "x": {
@@ -1076,39 +1080,19 @@
   };
 
   window.onload = function() {
-    var backlogSlopeSpec, backlogWorkgroupSpec, closingSpec, contentDiv, embedSpec, lastActionSpec, openCasesSpec, per_month_Spec, sourceSpec, width;
-    contentDiv = document.getElementsByClassName('content')[0];
-    width = contentDiv.offsetWidth - 100;
+    var backlogSlopeSpec, embedSpec, lastActionSpec, openCasesSpec, per_month_Spec;
     embedSpec = {
       mode: 'vega-lite',
       spec: workgroup,
       actions: false
     };
     vg.embed('#working-group', embedSpec);
-    closingSpec = {
-      mode: 'vega-lite',
-      spec: closingReasons,
-      actions: false
-    };
-    vg.embed('#closing-reasons', closingSpec);
-    sourceSpec = {
-      mode: 'vega-lite',
-      spec: caseSource,
-      actions: false
-    };
-    vg.embed('#case-sources', sourceSpec);
     per_month_Spec = {
       mode: 'vega',
       spec: casesPerMonth2016,
       actions: false
     };
     vg.embed('#case-per-month', per_month_Spec);
-    backlogWorkgroupSpec = {
-      mode: 'vega-lite',
-      spec: backlogPerWorkgroup,
-      actions: false
-    };
-    vg.embed('#backlog-per-workgroup', backlogWorkgroupSpec);
     openCasesSpec = {
       mode: 'vega-lite',
       spec: openCasesByInvestigatorBar,

@@ -1,60 +1,131 @@
 <!DOCTYPE html>
 <html ng-app='geosure'>
-  <head>
-    <meta charset='utf-8'>
-    <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
-    <meta content='width=device-width, initial-scale=1.0, user-scalable=no' name='viewport'>
-    <title>Code Enforcement Violations San Diego</title>
-    <link href="stylesheets/normalize.css" rel="stylesheet" /><link href="stylesheets/site.css" rel="stylesheet" />
-    <!-- Google Tag Manager -->
-    <script>
-      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src= 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-MTT6KM');
-    </script>
-    <!-- End Google Tag Manager -->
-  </head>
-  <body>
-    <div class='content'>
-      <h1>Code Enforement Violations San Diego</h1>
-      <div class='category'>
-        <div class='group'>
-          <p>
-            Currently
-            <span class='open'>3440</span>
-            violation cases are open.
-            <br>
-            From these
-            <span class='open'>3440</span>
-            cases
-            <span class='open buildings'>1588</span>
-            are Building violations,
-            <span class='open buildings'>1778</span>
-            cases are Zoning violations,
-            <span class='open compliance'>73</span>
-            are Code Compliance cases and
-            <span class='open graffiti'>1</span>
-            are Grafitti cases.
-          </p>
-        </div>
-        <div class='group-graph' id='working-group'></div>
-      </div>
-      <div class='category'>
-        <h2>Case Backlog 2016</h2>
-        <div class='group-graph' id='backlog-slope'></div>
-      </div>
-      <div class='category'>
-        <h2>Detailed Case Backlog per month in 2016</h2>
-        <div class='full-graph' id='case-per-month'></div>
-      </div>
-      <div class='category'>
-        <h2>Open Cases by Investigator</h2>
-        <div class='full-graph' id='backlog-investigator'></div>
-      </div>
-      <div class='category'>
-        <h2>Last Action for Open Cases</h2>
-        <p>Last Action for open cases with at least 100 Open cases.</p>
-        <div class='full-graph' id='last-action'></div>
-      </div>
-    </div>
-    <script src="javascripts/site.js"></script>
-  </body>
+<head>
+<meta charset='utf-8'>
+<meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+<meta content='width=device-width, initial-scale=1.0, user-scalable=no' name='viewport'>
+<title>Code Enforcement Violations San Diego</title>
+<link href='https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css' rel='stylesheet'>
+</head>
+<body class='bg-gray-50'>
+<div class='content container mx-auto'>
+<div class='relative pt-16 sm:pt-24 lg:pt-32'>
+<div class='mx-auto max-w-md px-4 sm:px-6 sm:max-w-3xl lg:px-8 lg:max-w-7xl'>
+<div>
+<h2 class='mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-5xl'>
+Code Enforcement Violations San Diego
+</h2>
+<p class='mt-5 max-w-prose text-xl text-gray-500'>
+This site is the result of an analysis of data from 2016 of Code Enforcement violations in the City of San Diego. It showcases the huge backlog of cases that was dicussed heavily in the press at the time.
+</p>
+</div>
+</div>
+</div>
+<dl class='mt-10 text-center sm:max-w-5xl sm:mx-auto sm:grid sm:grid-cols-5 sm:gap-8'>
+<div class='flex flex-col'>
+<dt class='order-2 mt-2 text-lg leading-6 font-medium text-blue-600'>Open Cases</dt>
+<dd class='order-1 text-5xl font-extrabold text-gray-500'>3440</dd>
+
+</div>
+<div class='flex flex-col mt-10 sm:mt-0'>
+<dt class='order-2 mt-2 text-lg leading-6 font-medium text-blue-600'>Building violations</dt>
+<dd class='order-1 text-5xl font-extrabold text-gray-500'>1588</dd>
+
+</div>
+<div class='flex flex-col mt-10 sm:mt-0'>
+<dt class='order-2 mt-2 text-lg leading-6 font-medium text-blue-600'>Zoning violations</dt>
+<dd class='order-1 text-5xl font-extrabold text-gray-500'>1778</dd>
+
+</div>
+<div class='flex flex-col mt-10 sm:mt-0'>
+<dt class='order-2 mt-2 text-lg leading-6 font-medium text-blue-600'>Code Compliance violations</dt>
+<dd class='order-1 text-5xl font-extrabold text-gray-500'>73</dd>
+
+</div>
+<div class='flex flex-col mt-10 sm:mt-0'>
+<dt class='order-2 mt-2 text-lg leading-6 font-medium text-blue-600'>Grafitti violations</dt>
+<dd class='order-1 text-5xl font-extrabold text-gray-500'>1</dd>
+
+</div>
+</dl>
+<div class='max-w-md px-4 text-center sm:px-6 sm:max-w-3xl lg:px-8 lg:max-w-3xl'>
+<div class='group-graph' id='working-group'></div>
+</div>
+<div class='lg:relative mt-16'>
+<div class='mx-auto max-w-7xl w-full pb-20 text-center lg:text-left flex'>
+<div class='px-4 sm:px-8 xl:pr-16 w-full lg:w-2/5'>
+<h2 class='text-2xl tracking-tight font-extrabold text-gray-900 sm:text-3xl md:text-4xl lg:text-3xl xl:text-4xl'>
+<span class='block xl:inline'>Cases Backlog 2016</span>
+</h2>
+<p class='mt-3 max-w-md mx-auto text-lg text-gray-500 sm:text-xl md:mt-5 md:max-w-3xl'>
+The backlock of cases still grew over the course of 2016.
+<br>
+Since the gap between closed cases and newly open cases was never closed, the backlog grew in the first half of 2016.
+</p>
+<div class='mt-10 sm:flex sm:justify-center lg:justify-start'></div>
+</div>
+<div class='relative w-full lg:w-3/5'>
+<div class='group-graph' id='backlog-slope'></div>
+<div class='full-graph' id='case-per-month'></div>
+</div>
+</div>
+</div>
+<div class='lg:relative mt-16'>
+<div class='mx-auto max-w-7xl w-full pb-20 text-center lg:text-left flex'>
+<div class='px-4 sm:px-8 xl:pr-16 w-full lg:w-2/5'>
+<h2 class='text-2xl tracking-tight font-extrabold text-gray-900 sm:text-3xl md:text-4xl lg:text-3xl xl:text-4xl'>
+<span class='block xl:inline'>Cases by Investigator</span>
+</h2>
+<p class='mt-3 max-w-md mx-auto text-lg text-gray-500 sm:text-xl md:mt-5 md:max-w-3xl'>
+Even though we don't know anything about the staff responsible for the cases we do know their names.
+<br>
+And it seems as if Joyce Parani had the highest workload and backlog of issues.  Again, we don't know why that is the case but it is an interesting observation and more research would be needed to make any assumptions.
+</p>
+<div class='mt-10 sm:flex sm:justify-center lg:justify-start'></div>
+</div>
+<div class='relative w-full lg:w-3/5'>
+<div class='full-graph' id='backlog-investigator'></div>
+</div>
+</div>
+</div>
+<div class='lg:relative mt-16'>
+<div class='mx-auto max-w-7xl w-full pb-20 text-center lg:text-left flex'>
+<div class='px-4 sm:px-8 xl:pr-16 w-full lg:w-2/5'>
+<h2 class='text-2xl tracking-tight font-extrabold text-gray-900 sm:text-3xl md:text-4xl lg:text-3xl xl:text-4xl'>
+<span class='block xl:inline'>Last Action for Open Cases</span>
+</h2>
+<p class='mt-3 max-w-md mx-auto text-lg text-gray-500 sm:text-xl md:mt-5 md:max-w-3xl'>
+Looking at the last action type which have a least 100 open cases.
+<br>
+Most of the cases that are open are still in the prepping for inspeaction phase or are in inspection.
+</p>
+<div class='mt-10 sm:flex sm:justify-center lg:justify-start'></div>
+</div>
+<div class='relative w-full lg:w-3/5'>
+<div class='full-graph' id='last-action'></div>
+</div>
+</div>
+</div>
+<div class='lg:relative mt-16'>
+<div class='mx-auto max-w-7xl w-full pb-20 text-center lg:text-left flex'>
+<div class='px-4 sm:px-8 xl:pr-16 w-full'>
+<h2 class='text-2xl tracking-tight font-extrabold text-gray-900 sm:text-3xl md:text-4xl lg:text-3xl xl:text-4xl'>
+<span class='block xl:inline'>Data & People involved</span>
+</h2>
+<p class='mt-3 max-w-md text-lg text-gray-500 sm:text-xl md:mt-5 md:max-w-3xl'>
+The data for this analysis is available at the
+<a class='text-blue-500 hover:underline' href='https://data.sandiego.gov/datasets/code-enforcement-violations/'>Open Data Portal</a>
+of the City of San Diego. Only data from 2016 was looked at the time of this analysis.
+<br>
+The analysis was done by
+<a class='text-blue-500 hover:underline' href='https://milafrerichs.com/en'>Mila Frerichs</a>
+, a civic hacker interested in San Diego politics.
+</p>
+</div>
+</div>
+</div>
+
+</div>
+<script src="/javascripts/site.js"></script>
+</body>
 </html>
