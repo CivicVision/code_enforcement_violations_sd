@@ -1,0 +1,12 @@
+!!!
+%html(ng-app="geosure" )
+  %head
+    %meta{charset: "utf-8"}
+    %meta{content: "IE=edge,chrome=1", "http-equiv" => "X-UA-Compatible"}
+    %meta(name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no")
+    %title= current_page.data.title || ""
+    %link(href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet")
+  %body.bg-gray-50
+    .content.container.mx-auto
+      = yield
+    = javascript_include_tag "site"
