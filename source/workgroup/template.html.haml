@@ -1,0 +1,35 @@
+---
+layout: sub
+---
+%h2.mt-16.text-2xl.tracking-tight.font-extrabold.text-gray-900.sm:text-3xl.md:text-4xl.lg:text-3xl.xl:text-4xl
+  %span.block.xl:inline="#{workgroup.name} Violations"
+
+%dl.mt-10.sm:max-w-5xl.sm:grid.sm:grid-cols-5.sm:gap-8
+  .flex.flex-col
+    = partial "partials/stat_small", locals: { title: "Open Cases", data: workgroup.open }
+  .flex.flex-col.mt-10.sm:mt-0
+    = partial "partials/stat_small", locals: { title: "Closed Cases", data: workgroup.closed }
+  .flex.flex-col.mt-10.sm:mt-0
+    = partial "partials/stat_small", locals: { title: "Avg days open", data: workgroup.mean_open.to_i }
+
+.flex.pt-8
+  %div.pr-4(class="w-1/2")
+    = partial "partials/total_table", locals: { name: workgroup.name, group: "case_source", title: "Case Source" }
+  %div(class="w-1/2")
+    = partial "partials/total_table", locals: { name: workgroup.name, group: "last_action", title: "Last Action" }
+%h3.mt-16.text-xl.tracking-tight.font-extrabold.text-gray-900.sm:text-2xl.md:text-3xl.lg:text-2xl.xl:text-3xl
+  %span.block.xl:inline Currently open cases
+%table.min-w-full.divide-y.divide-gray-200
+  %thead.bg-gray-50
+    %tr
+      %th.px-6.py-3.text-left.text-xs.font-medium.text-gray-500.uppercase.tracking-wider Case ID
+      %th.px-6.py-3.text-left.text-xs.font-medium.text-gray-500.uppercase.tracking-wider Case Source
+      %th.px-6.py-3.text-left.text-xs.font-medium.text-gray-500.uppercase.tracking-wider Last Action
+      %th.px-6.py-3.text-left.text-xs.font-medium.text-gray-500.uppercase.tracking-wider Days open
+  %tbody.bg-white.divide-y.divide-gray-200
+    - data.open_cases.select{ |c| c[:workgroup] == workgroup.name }.each do |c|
+      %tr
+        %td.px-6.py-4.whitespace-nowrap.text-sm.font-medium.text-gray-900= c.case_id
+        %td.px-6.py-4.whitespace-nowrap.text-sm.font-medium.text-gray-900= c.case_source
+        %td.px-6.py-4.whitespace-nowrap.text-sm.font-medium.text-gray-900= c.last_action
+        %td.px-6.py-4.whitespace-nowrap.text-sm.font-medium.text-gray-900= c.OPEN_DAYS

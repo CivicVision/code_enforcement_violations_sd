@@ -1,0 +1,10 @@
+%table.min-w-full.divide-y.divide-gray-200
+  %thead.bg-gray-50
+    %tr
+      %th.px-6.py-3.text-left.text-xs.font-medium.text-gray-500.uppercase.tracking-wider= title
+      %th.px-6.py-3.text-left.text-xs.font-medium.text-gray-500.uppercase.tracking-wider Total
+  %tbody.bg-white.divide-y.divide-gray-200
+    - data.open_cases.select{ |c| c[:workgroup] == name }.group_by{ |c| c[group]}.transform_values { |values| values.count }.sort_by{ |w| w[1] }.reverse.each do |case_source|
+      %tr
+        %td.px-6.py-4.whitespace-nowrap.text-sm.font-medium.text-gray-900= case_source[0]
+        %td.px-6.py-4.whitespace-nowrap.text-sm.font-medium.text-gray-900= case_source[1]
