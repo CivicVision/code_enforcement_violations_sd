@@ -1,5 +1,5 @@
 (function() {
-  var backlogPerWorkgroup, backlogSlope, caseSource, casesPerMonth2016, cases_closed_per_month, closingReasons, openCasesByInvestigator, openCasesByInvestigatorBar, openCasesLastActionBar, workgroup;
+  var backlogPerWorkgroup, backlogSlope, caseSource, casesPerMonth2016, cases_closed_per_month, closingReasons, getContainerWidth, openCasesByInvestigator, openCasesByInvestigatorBar, openCasesLastActionBar, workgroup;
 
   caseSource = {
     "description": "A simple bar chart with embedded data.",
@@ -35,7 +35,6 @@
       "url": "data/closed_by_reason.csv"
     },
     "mark": "bar",
-    "width": "container",
     "encoding": {
       "y": {
         "field": "close_reason",
@@ -69,7 +68,6 @@
       "url": "data/case_by_workgroup.csv"
     },
     "mark": "bar",
-    "width": "container",
     "encoding": {
       "y": {
         "field": "workgroup",
@@ -107,7 +105,6 @@
         }
       ]
     },
-    "width": "container",
     "mark": "line",
     "encoding": {
       "x": {
@@ -166,7 +163,6 @@
   };
 
   openCasesByInvestigatorBar = {
-    "width": 500,
     "description": "A simple bar chart with embedded data.",
     "data": {
       "url": "data/code_violations_year_month_backlog_06_2016_tidy.csv",
@@ -247,7 +243,6 @@
   };
 
   openCasesLastActionBar = {
-    "width": 500,
     "description": "A simple bar chart with embedded data.",
     "data": {
       "url": "data/code_violations_open_last_action.csv"
@@ -852,8 +847,6 @@
   };
 
   casesPerMonth2016 = {
-    "width": 1,
-    "height": 1,
     "padding": "auto",
     "data": [
       {
@@ -1079,32 +1072,44 @@
     ]
   };
 
+  getContainerWidth = function(container_id) {
+    var container;
+    container = document.querySelector(container_id);
+    return container.offsetWidth;
+  };
+
   window.onload = function() {
-    var backlogSlopeSpec, embedSpec, lastActionSpec, openCasesSpec, per_month_Spec;
+    var backlogSlopeSpec, embedSpec, lastActionSpec, legendSize, openCasesSpec, per_month_Spec;
+    legendSize = 300;
+    workgroup.width = getContainerWidth('#working-group');
     embedSpec = {
       mode: 'vega-lite',
       spec: workgroup,
       actions: false
     };
     vg.embed('#working-group', embedSpec);
+    casesPerMonth2016.width = getContainerWidth('#case-per-month');
     per_month_Spec = {
       mode: 'vega',
       spec: casesPerMonth2016,
       actions: false
     };
     vg.embed('#case-per-month', per_month_Spec);
+    openCasesByInvestigatorBar.config.facet.cell.width = getContainerWidth('#backlog-investigator') - legendSize;
     openCasesSpec = {
       mode: 'vega-lite',
       spec: openCasesByInvestigatorBar,
       actions: false
     };
     vg.embed('#backlog-investigator', openCasesSpec);
+    openCasesLastActionBar.width = getContainerWidth('#last-action') - legendSize;
     lastActionSpec = {
       mode: 'vega-lite',
       spec: openCasesLastActionBar,
       actions: false
     };
     vg.embed('#last-action', lastActionSpec);
+    backlogSlope.width = getContainerWidth('#backlog-slope');
     backlogSlopeSpec = {
       mode: 'vega',
       spec: backlogSlope,
