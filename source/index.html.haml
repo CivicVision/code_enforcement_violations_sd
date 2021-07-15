@@ -13,13 +13,13 @@ title: Code Enforcement Violations San Diego
   .flex.flex-col
     = partial "partials/stat", locals: { title: "Open Cases", data: data.cases.open_cases }
   .flex.flex-col.mt-10.sm:mt-0
-    = partial "partials/stat", locals: { title: "Building violations", data: data.cases.building.open }
+    = partial "partials/stat", locals: { title: "Building violations", data: data.cases.building.open, link: '/workgroup/building.html' }
   .flex.flex-col.mt-10.sm:mt-0
-    = partial "partials/stat", locals: { title: "Zoning violations", data: data.cases.zoning.open }
+    = partial "partials/stat", locals: { title: "Zoning violations", data: data.cases.zoning.open, link: '/workgroup/zoning.html' }
   .flex.flex-col.mt-10.sm:mt-0
-    = partial "partials/stat", locals: { title: "Code Compliance violations", data: data.cases.code_compliance.open }
+    = partial "partials/stat", locals: { title: "Code Compliance violations", data: data.cases.code_compliance.open, link: '/workgroup/code_compliance.html' }
   .flex.flex-col.mt-10.sm:mt-0
-    = partial "partials/stat", locals: { title: "Grafitti violations", data: data.cases.graffiti.open }
+    = partial "partials/stat", locals: { title: "Grafitti violations", data: data.cases.graffiti.open, link: '/workgroup/graffiti.html' }
 
 .mx-auto.max-w-md.px-4.sm:px-6.sm:max-w-3xl.lg:px-8.lg:max-w-7xl.mt-8
   .group-graph#working-group(class="w-1/2")

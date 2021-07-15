@@ -1,0 +1,34 @@
+[
+	{
+    "name": "Building",
+		"slug": "building",
+    "closed": 723,
+    "mean_closed": 263.995850622407,
+    "open": 1588,
+    "mean_open": 588.887279596977
+	},
+  {
+    "name": "Code Compliance",
+		"slug": "code_compliance",
+    "closed": 209,
+    "mean_closed": 125.684210526316,
+    "open": 73,
+    "mean_open": 236.958904109589
+  },
+  {
+    "name": "Graffiti",
+		"slug": "graffiti",
+    "closed": 1,
+    "mean_closed": 1605,
+    "open": 1,
+    "mean_open": 667
+  },
+  {
+    "name": "Zoning",
+		"slug": "zoning",
+    "closed": 974,
+    "mean_closed": 215.571868583162,
+    "open": 1778,
+    "mean_open": 566.493813273341
+  }
+]
