@@ -7,6 +7,6 @@
     %title= current_page.data.title || ""
     %link(href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet")
   %body.bg-gray-50
-    .content.container.mx-auto
+    .content.container.mx-auto.max-w-7xl
       = yield
     = javascript_include_tag "site"

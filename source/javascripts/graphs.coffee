@@ -13,7 +13,6 @@ closingReasons = {
   "description": "A simple bar chart with embedded data.",
   "data": { "url": "data/closed_by_reason.csv" },
   "mark":"bar",
-  "width": "container",
   "encoding": {
     "y": {"field": "close_reason", "type": "ordinal", "sort": {"op": "sum", "field": "count"}, "axis": {"title": "Close Reason"}},
     "x": {"field": "count", "type": "quantitative", "axis": {"title": "# Cases"}},
@@ -24,7 +23,6 @@ workgroup= {
   "description": "A simple bar chart with embedded data.",
   "data": { "url": "data/case_by_workgroup.csv" },
   "mark":"bar",
-  "width": "container",
   "encoding": {
     "y": {"field": "workgroup", "type": "ordinal", "sort": {"op": "sum", "field": "open", "order": "descending" }, "axis": {"title": "Workgroup"}},
     "x": {"field": "open", "type": "quantitative", "axis": {"title": "# Cases"}}
@@ -42,7 +40,6 @@ cases_closed_per_month = {
       }
     ]
   },
-  "width": "container",
   "mark":"line",
   "encoding": {
     "x": {"field": "year_month", "type": "ordinal", "scale": {"bandSize": 50, "padding": 0.5}, "axis": { "title": "Month" } },
@@ -62,7 +59,6 @@ backlogPerWorkgroup = {
   }
 }
 openCasesByInvestigatorBar = {
-  "width": 500,
   "description": "A simple bar chart with embedded data.",
   "data": {
     "url": "data/code_violations_year_month_backlog_06_2016_tidy.csv",
@@ -82,7 +78,6 @@ openCasesByInvestigatorBar = {
   "config":{"facet": {"cell": {"strokeWidth": 0}}}
 }
 openCasesLastActionBar= {
-  "width": 500,
   "description": "A simple bar chart with embedded data.",
   "data": {
     "url": "data/code_violations_open_last_action.csv",
@@ -408,8 +403,6 @@ backlogSlope = {
 
 
 casesPerMonth2016 = {
-  "width": 1,
-  "height": 1,
   "padding": "auto",
   "data": [
     {
@@ -578,29 +571,41 @@ casesPerMonth2016 = {
   ]
 }
 
+getContainerWidth = (container_id) ->
+  container = document.querySelector(container_id)
+  container.offsetWidth
+
 window.onload = () ->
+  legendSize = 300
+  workgroup.width = getContainerWidth('#working-group')
   embedSpec =
     mode: 'vega-lite'
     spec: workgroup
     actions: false
   vg.embed '#working-group', embedSpec
+
+  casesPerMonth2016.width = getContainerWidth('#case-per-month') 
   per_month_Spec =
     mode: 'vega'
     spec: casesPerMonth2016
     actions: false
   vg.embed '#case-per-month', per_month_Spec
+
+  openCasesByInvestigatorBar.config.facet.cell.width = getContainerWidth('#backlog-investigator') - legendSize
   openCasesSpec =
     mode: 'vega-lite'
     spec: openCasesByInvestigatorBar
     actions: false
   vg.embed '#backlog-investigator', openCasesSpec
 
+  openCasesLastActionBar.width = getContainerWidth('#last-action') - legendSize
   lastActionSpec =
     mode: 'vega-lite'
     spec: openCasesLastActionBar
     actions: false
   vg.embed '#last-action', lastActionSpec
 
+  backlogSlope.width = getContainerWidth('#backlog-slope')
   backlogSlopeSpec =
     mode: 'vega'
     spec: backlogSlope
