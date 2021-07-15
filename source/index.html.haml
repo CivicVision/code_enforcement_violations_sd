@@ -21,10 +21,10 @@ title: Code Enforcement Violations San Diego
   .flex.flex-col.mt-10.sm:mt-0
     = partial "partials/stat", locals: { title: "Grafitti violations", data: data.cases.graffiti.open }
 
-.max-w-md.px-4.text-center.sm:px-6.sm:max-w-3xl.lg:px-8.lg:max-w-3xl
-  .group-graph#working-group
+.mx-auto.max-w-md.px-4.sm:px-6.sm:max-w-3xl.lg:px-8.lg:max-w-7xl.mt-8
+  .group-graph#working-group(class="w-1/2")
 .lg:relative.mt-16
-  .mx-auto.max-w-7xl.w-full.pb-20.text-center.lg:text-left.flex
+  .mx-auto.max-w-7xl.w-full.pb-20.text-center.lg:text-left.flex.flex-col.lg:flex-row
     .px-4.sm:px-8.xl:pr-16.w-full(class="lg:w-2/5")
       %h2.text-2xl.tracking-tight.font-extrabold.text-gray-900.sm:text-3xl.md:text-4xl.lg:text-3xl.xl:text-4xl
         %span.block.xl:inline Cases Backlog 2016
@@ -33,11 +33,11 @@ title: Code Enforcement Violations San Diego
         %br
         Since the gap between closed cases and newly open cases was never closed, the backlog grew in the first half of 2016.
       .mt-10.sm:flex.sm:justify-center.lg:justify-start
-    .relative.w-full{:class => "lg:w-3/5"}
+    .w-full{:class => "lg:w-3/5"}
       .group-graph#backlog-slope
-      .full-graph#case-per-month
+      #case-per-month
 .lg:relative.mt-16
-  .mx-auto.max-w-7xl.w-full.pb-20.text-center.lg:text-left.flex
+  .mx-auto.max-w-7xl.w-full.pb-20.text-center.lg:text-left.flex.flex-col.lg:flex-row
     .px-4.sm:px-8.xl:pr-16.w-full(class="lg:w-2/5")
       %h2.text-2xl.tracking-tight.font-extrabold.text-gray-900.sm:text-3xl.md:text-4xl.lg:text-3xl.xl:text-4xl
         %span.block.xl:inline Cases by Investigator
@@ -47,10 +47,10 @@ title: Code Enforcement Violations San Diego
         And it seems as if Joyce Parani had the highest workload and backlog of issues.  Again, we don't know why that is the case but it is an interesting observation and more research would be needed to make any assumptions.
       .mt-10.sm:flex.sm:justify-center.lg:justify-start
     .relative.w-full{:class => "lg:w-3/5"}
-      .full-graph#backlog-investigator
+      #backlog-investigator
 
 .lg:relative.mt-16
-  .mx-auto.max-w-7xl.w-full.pb-20.text-center.lg:text-left.flex
+  .mx-auto.max-w-7xl.w-full.pb-20.text-center.lg:text-left.flex.flex-col.lg:flex-row
     .px-4.sm:px-8.xl:pr-16.w-full(class="lg:w-2/5")
       %h2.text-2xl.tracking-tight.font-extrabold.text-gray-900.sm:text-3xl.md:text-4xl.lg:text-3xl.xl:text-4xl
         %span.block.xl:inline Last Action for Open Cases
